@@ -20,6 +20,12 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm run build
+      - name: Prefix paths while site is on github.io subpath
+        run: |
+          if [ -f .use-subpath ]; then
+            find dist -name '*.html' -exec sed -i -E 's#(href|src)="/([^/])#\1="/varnison-site/\2#g' {} +
+            rm -f dist/CNAME
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
