@@ -1,0 +1,14 @@
+---
+import { thumbOf, fmt } from '../lib';
+const { entry, kind } = Astro.props;
+const href = `/${kind}/${entry.id}/`;
+const img = kind === 'content' ? thumbOf(entry) : entry.data.cover;
+---
+<a class="card" href={href}>
+  {img ? <img src={img} alt="" loading="lazy" /> : <div class="ph">🎮</div>}
+  <div class="b">
+    <span class="tag">{entry.data.type}</span>{entry.data.sample && <span class="tag sample">sample</span>}
+    <h3>{entry.data.title}</h3>
+    <div class="meta">{fmt(entry.data.date)}</div>
+  </div>
+</a>

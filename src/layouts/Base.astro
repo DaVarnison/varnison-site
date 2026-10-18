@@ -1,0 +1,55 @@
+---
+const { title = 'Varnison', description = 'Varnison: content, projects and tech.' } = Astro.props;
+const path = Astro.url.pathname;
+const nav = [['/', 'Home'], ['/content/', 'Content'], ['/projects/', 'Projects']];
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>{title}</title><meta name="description" content={description} />
+<link rel="icon" href="/images/avatar.png" />
+</head>
+<body>
+<div class="sky"></div>
+<header>
+  <a class="brand" href="/"><img src="/images/avatar.png" alt="" width="40" height="40" /> VARNISON</a>
+  <nav>{nav.map(([h, l]) => <a href={h} class:list={[{ on: h === '/' ? path === '/' : path.startsWith(h) }]}>{l}</a>)}</nav>
+</header>
+<main><slot /></main>
+<footer>© Varnison · <a href="https://www.youtube.com/@VarnisonTV">YouTube</a> · <a href="https://twitch.tv/varnisonlive">Twitch</a> · <a href="https://x.com/VarnisonGaming">X</a></footer>
+<style is:global>
+:root{--p:#a78bfa;--glow:0 0 8px #fff,0 0 22px #a78bfa,0 0 40px #7c3aed}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#f4f0ff;line-height:1.6;min-height:100vh}
+.sky{position:fixed;inset:0;z-index:-1;background:
+ radial-gradient(ellipse 60% 25% at 20% 85%,rgba(255,255,255,.35),transparent 70%),
+ radial-gradient(ellipse 50% 20% at 80% 92%,rgba(255,255,255,.3),transparent 70%),
+ radial-gradient(ellipse 40% 15% at 55% 70%,rgba(200,180,255,.25),transparent 70%),
+ linear-gradient(180deg,#1b1147 0%,#4b2a9a 45%,#6f7fe0 100%)}
+header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;padding:.8rem 1.2rem;background:rgba(20,10,60,.55);backdrop-filter:blur(8px);position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:.6rem;font-weight:800;letter-spacing:.15em;color:#fff;text-decoration:none;text-shadow:var(--glow)}
+.brand img{border-radius:50%}
+nav a{color:#ddd6fe;text-decoration:none;margin-left:1.1rem;font-weight:600}
+nav a.on,nav a:hover{color:#fff;text-shadow:var(--glow)}
+main{max-width:1000px;margin:0 auto;padding:1.5rem 1.2rem 3rem}
+h1,h2{color:#fff;text-shadow:var(--glow);letter-spacing:.04em}
+a{color:#c4b5fd}
+footer{text-align:center;padding:2rem 1rem;color:#ddd6fe}
+.card{background:rgba(25,12,70,.6);border:1px solid rgba(196,181,253,.35);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;display:block;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 0 22px rgba(167,139,250,.6)}
+.card img,.ph{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#2b1a6b}
+.ph{display:grid;place-items:center;font-size:2rem}
+.card .b{padding:.8rem 1rem}
+.card h3{margin:.2rem 0;color:#fff}
+.meta{font-size:.85rem;color:#c4b5fd}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.tag{display:inline-block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;background:#7c3aed;color:#fff;border-radius:99px;padding:.1rem .6rem;margin-right:.4rem}
+.sample{background:#f59e0b;color:#1b1147}
+.btn{display:inline-block;background:#7c3aed;color:#fff;padding:.5rem 1rem;border-radius:99px;text-decoration:none;font-weight:700}
+.btn:hover{box-shadow:0 0 16px #a78bfa}
+.panel{background:rgba(25,12,70,.6);border:1px solid rgba(196,181,253,.35);border-radius:14px;padding:1rem 1.2rem}
+.embed{aspect-ratio:16/9;width:100%;border:0;border-radius:12px}
+</style>
+</body></html>

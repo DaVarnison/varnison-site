@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { getCollection } from 'astro:content';
+const items = (await getCollection('projects')).sort((a, b) => +b.data.date - +a.data.date);
+---
+<Base title="Projects · Varnison"><h1>Projects</h1>
+<div class="grid">{items.map((e) => <Card entry={e} kind="projects" />)}</div></Base>

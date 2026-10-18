@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { fmt, currentVersion } from '../../lib';
+export async function getStaticPaths() {
+  return (await getCollection('projects')).map((e) => ({ params: { id: e.id }, props: { e } }));
+}
+const { e } = Astro.props;
+const { Content } = await render(e);
+const cur = currentVersion(e);
+const hist = [...e.data.updates].sort((a, b) => +b.date - +a.date);
+const dl = e.data.downloadable;
+---
+<Base title={`${e.data.title} · Varnison`}>
+  <p><a href="/projects/">← Projects</a></p>
+  <h1>{e.data.title}</h1>
+  <p class="meta"><span class="tag">{e.data.type}</span>{e.data.sample && <span class="tag sample">sample</span>}{cur && <>Current version <strong>{cur.version}</strong></>}</p>
+  {e.data.cover && <img src={e.data.cover} alt="" style="max-width:100%;border-radius:12px" />}
+  <div class="panel" style="margin:1rem 0"><Content /></div>
+  {dl && cur?.download && <p><a class="btn" href={cur.download}>Download {cur.version}</a></p>}
+  {dl && <h2>Version history</h2>}
+  {dl && hist.map((u) => (
+    <div class="panel" style="margin-bottom:.8rem">
+      <strong>{u.version}</strong> <span class="meta">· {fmt(u.date)}</span>
+      {u.changelog && <p style="margin:.3rem 0">{u.changelog}</p>}
+      {u.download && <a href={u.download}>Download</a>}
+    </div>))}
+  {!dl && <p class="meta">Download not available. Showing current version only.</p>}
+</Base>

@@ -1,0 +1,58 @@
+backend:
+  name: github
+  repo: DaVarnison/varnison-site
+  branch: main
+  # TODO: replace with your deployed Cloudflare Worker URL (see oauth-worker/README.md)
+  base_url: https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://varnison.com
+display_url: https://varnison.com
+collections:
+  - name: content
+    label: Content (videos & pictures)
+    folder: src/content/content
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date uploaded, widget: datetime }
+      - { name: type, label: Type, widget: select, options: [video, picture], default: video }
+      - { name: youtube, label: YouTube URL (for videos), widget: string, required: false }
+      - { name: thumbnail, label: Thumbnail (optional; YouTube thumbnail used if empty), widget: image, required: false }
+      - { name: image, label: Image (for pictures), widget: image, required: false }
+      - { name: sample, label: Sample item (leave off), widget: boolean, default: false, required: false }
+      - { name: body, label: Description, widget: markdown }
+  - name: projects
+    label: Projects (mods, apps, code)
+    folder: src/content/projects
+    extension: md
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: date, label: Date, widget: datetime }
+      - { name: type, label: Type, widget: select, options: [mod, app, code], default: app }
+      - { name: cover, label: Cover image, widget: image, required: false }
+      - { name: downloadable, label: Downloadable (show downloads and version history), widget: boolean, default: false }
+      - { name: sample, label: Sample item (leave off), widget: boolean, default: false, required: false }
+      - name: updates
+        label: Updates
+        widget: list
+        required: false
+        fields:
+          - { name: version, label: Version, widget: string }
+          - { name: date, label: Date, widget: datetime }
+          - { name: changelog, label: Changelog, widget: text, required: false }
+          - { name: download, label: Download URL (GitHub Releases link), widget: string, required: false }
+      - { name: body, label: Description, widget: markdown }
+  - name: settings
+    label: Site settings
+    files:
+      - name: bio
+        label: Home page bio
+        file: src/content/site/bio.md
+        fields:
+          - { name: title, label: Title, widget: hidden, default: Bio }
+          - { name: body, label: Bio text, widget: markdown }
