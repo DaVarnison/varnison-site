@@ -3,7 +3,7 @@ backend:
   repo: DaVarnison/varnison-site
   branch: main
   # TODO: replace with your deployed Cloudflare Worker URL (see oauth-worker/README.md)
-  base_url: https://YOUR-WORKER-NAME.YOUR-SUBDOMAIN.workers.dev
+  base_url: https://varnison-cms-auth.varnison.workers.dev
 media_folder: public/uploads
 public_folder: /uploads
 site_url: https://varnison.com
