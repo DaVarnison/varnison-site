@@ -14,7 +14,7 @@ const nav = [['/', 'Home'], ['/content/', 'Content'], ['/projects/', 'Projects']
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
-<div class="sky"></div>
+<div class="sky"></div><div class="clouds" aria-hidden="true"><i style="--w:420px;--t:14%;--l:-6%;--d:70s"></i><i style="--w:300px;--t:30%;--l:62%;--d:90s"></i><i style="--w:520px;--t:58%;--l:8%;--d:110s"></i><i style="--w:380px;--t:76%;--l:55%;--d:80s"></i><i style="--w:260px;--t:6%;--l:48%;--d:100s"></i></div>
 <header>
   <a class="brand" href="/"><img src="/images/v.png" alt="" width="40" height="40" /> VARNISON</a>
   <nav>{nav.map(([h, l]) => <a href={h} class:list={[{ on: h === '/' ? path === '/' : path.startsWith(h) }]}>{l}</a>)}</nav>
@@ -28,6 +28,7 @@ const nav = [['/', 'Home'], ['/content/', 'Content'], ['/projects/', 'Projects']
 *{box-sizing:border-box}
 html,body{margin:0}
 body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#f4f0ff;line-height:1.6;min-height:100vh}
+.clouds{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}.clouds i{position:absolute;top:var(--t);left:var(--l);width:var(--w);height:calc(var(--w)*.28);border-radius:999px;background:radial-gradient(ellipse at 50% 60%,rgba(196,181,253,.28),rgba(139,92,246,.12) 55%,transparent 72%);filter:blur(14px);animation:drift var(--d) ease-in-out infinite alternate}@keyframes drift{to{transform:translateX(60px)}}
 .sky{position:fixed;inset:0;z-index:-1;background:
  linear-gradient(rgba(167,139,250,.07) 1px,transparent 1px) 0 0/40px 40px,
  linear-gradient(90deg,rgba(34,211,238,.06) 1px,transparent 1px) 0 0/40px 40px,
