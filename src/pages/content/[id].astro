@@ -7,15 +7,16 @@ export async function getStaticPaths() {
 }
 const { e } = Astro.props;
 const { Content } = await render(e);
+const desc = (e.body || '').replace(/[#*_>`\[\]()!-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 155);
 const vid = ytId(e.data.youtube);
 const img = e.data.type === 'picture' ? e.data.image : null;
 ---
-<Base title={`${e.data.title} · Varnison`}>
+<Base title={`${e.data.title} | Varnison`} description={desc || `video by Varnison: ${e.data.title}.`} image={'/images/og.jpg'} type="article">
   <p><a href="/content/">← Content</a></p>
   <h1>{e.data.title}</h1>
   <p class="meta"><span class="tag">{e.data.type}</span>{e.data.sample && <span class="tag sample">sample</span>}{fmt(e.data.date)}</p>
   {vid ? <iframe class="embed" src={`https://www.youtube.com/embed/${vid}`} title={e.data.title} allowfullscreen loading="lazy"></iframe>
-   : img ? <img src={img} alt={e.data.title} style="max-width:100%;border-radius:12px" />
+   : img ? <img src={img} alt={`${e.data.title} (picture by Varnison)`} style="max-width:100%;border-radius:12px" />
    : e.data.youtube ? <p><a class="btn" href={e.data.youtube}>Watch on YouTube</a></p> : null}
   <div class="panel" style="margin-top:1rem"><Content /></div>
 </Base>

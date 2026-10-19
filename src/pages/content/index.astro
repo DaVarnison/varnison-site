@@ -4,7 +4,7 @@ import Card from '../../components/Card.astro';
 import { getCollection } from 'astro:content';
 const items = (await getCollection('content')).sort((a, b) => +b.data.date - +a.data.date);
 ---
-<Base title="Content · Varnison"><h1>Content</h1>
+<Base title="Videos & Content | Varnison" description="Gameplay videos, Hytale and Minecraft adventures, and pictures from Varnison. Browse the latest uploads, newest first."><h1>Content</h1>
 <div class="sortbar"><label for="sort">Sort:</label><select id="sort" aria-label="Sort by date"><option value="desc">Newest first</option><option value="asc">Oldest first</option></select></div>
 <div class="grid" id="grid">{items.map((e) => <Card entry={e} kind="content" />)}</div><script is:inline>
 const g=document.getElementById("grid"),sel=document.getElementById("sort");
