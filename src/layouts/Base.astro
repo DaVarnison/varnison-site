@@ -9,18 +9,19 @@ const nav = [['/', 'Home'], ['/content/', 'Content'], ['/projects/', 'Projects']
 <head>
 <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>{title}</title><meta name="description" content={description} />
-<link rel="icon" href="/images/avatar.png" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet" />
 </head>
 <body>
 <div class="sky"></div>
 <header>
-  <a class="brand" href="/"><img src="/images/avatar.png" alt="" width="40" height="40" /> VARNISON</a>
+  <a class="brand" href="/"><img src="/images/v.png" alt="" width="40" height="40" /> VARNISON</a>
   <nav>{nav.map(([h, l]) => <a href={h} class:list={[{ on: h === '/' ? path === '/' : path.startsWith(h) }]}>{l}</a>)}</nav>
   <div class="socials">{socials.map((x) => <a href={x.url} target="_blank" rel="noopener noreferrer" aria-label={x.name} title={x.name}><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d={x.path} /></svg></a>)}</div>
 </header>
 <main><slot /></main>
+<img class="corner" src="/images/v.png" alt="" width="56" height="56" />
 <footer>© 2026 Varnison Studios. All Rights Reserved<br />A Varnagiris Company</footer>
 <style is:global>
 :root{--p:#a78bfa;--cy:#22d3ee;--mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--glow:0 0 8px #fff,0 0 22px #a78bfa,0 0 40px #7c3aed}
@@ -46,6 +47,7 @@ nav{display:flex;gap:1.1rem;flex:1;justify-content:center}
 @media(max-width:640px){nav{order:3;flex-basis:100%;justify-content:center;margin:0}}
 .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;letter-spacing:.15em;font-family:var(--mono);color:#fff;text-decoration:none;text-shadow:var(--glow)}
 .brand img{border-radius:50%}
+.corner{position:fixed;right:14px;bottom:14px;z-index:4;border-radius:50%;opacity:.85;box-shadow:0 0 18px #7c3aed;pointer-events:none}
 nav a{color:#ddd6fe;text-decoration:none;font-weight:700;font-size:.9rem;text-transform:lowercase}nav a:before{content:'/';color:var(--cy);margin-right:.15rem}
 nav a.on,nav a:hover{color:#fff;text-shadow:var(--glow)}
 main{max-width:1000px;margin:0 auto;padding:1.5rem 1.2rem 3rem}
