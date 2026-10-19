@@ -9,10 +9,10 @@ const p = (await getCollection('projects')).map((e) => ({ e, kind: 'projects' })
 const latest = [...c, ...p].sort((a, b) => +b.e.data.date - +a.e.data.date)[0];
 ---
 <Base title="Varnison">
-  <section class="hero"><div class="htag"><p class="meta">Creator · Gamer · Aspiring studio founder</p><p class="tagline">&gt; building games, mods, apps<span class="cursor">_</span></p></div><img src="/images/hero-chill.jpg" alt="Varnison relaxing on the clouds" /></section>
+  <section class="hero"><div class="htag"><p class="meta">Creator · Gamer · Aspiring studio founder</p><p class="tagline">&gt; building games, mods, apps<span class="cursor">_</span></p></div><img src="/images/hero-chill.png" alt="Varnison relaxing on the clouds" /></section>
 <style>
 .hero{position:relative;max-width:760px;margin:0 auto -2px;text-align:center;padding-top:.5rem;z-index:1}
-.hero img{position:relative;width:100%;height:auto;display:block;margin-bottom:-4px;mix-blend-mode:screen;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%);mask-image:linear-gradient(to bottom,transparent 0,#000 12%)}
+.hero img{position:relative;width:100%;height:auto;display:block;margin-bottom:-4px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%);mask-image:linear-gradient(to bottom,transparent 0,#000 12%)}
 .htag p{margin:.2rem 0}
 </style>
   <section class="panel"><h2 style="margin-top:0">About me</h2><Content /></section>
