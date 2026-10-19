@@ -4,7 +4,7 @@ const { entry, kind } = Astro.props;
 const href = `/${kind}/${entry.id}/`;
 const img = kind === 'content' ? thumbOf(entry) : entry.data.cover;
 ---
-<a class="card" href={href}>
+<a class="card" href={href} data-date={new Date(entry.data.date).toISOString().slice(0,10)}>
   {img ? <img src={img} alt="" loading="lazy" /> : <div class="ph">🎮</div>}
   <div class="b">
     <span class="tag">{entry.data.type}</span>{entry.data.sample && <span class="tag sample">sample</span>}

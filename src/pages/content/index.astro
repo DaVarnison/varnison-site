@@ -5,4 +5,8 @@ import { getCollection } from 'astro:content';
 const items = (await getCollection('content')).sort((a, b) => +b.data.date - +a.data.date);
 ---
 <Base title="Content · Varnison"><h1>Content</h1>
-<div class="grid">{items.map((e) => <Card entry={e} kind="content" />)}</div></Base>
+<div class="sortbar"><label for="sort">Sort:</label><select id="sort" aria-label="Sort by date"><option value="desc">Newest first</option><option value="asc">Oldest first</option></select></div>
+<div class="grid" id="grid">{items.map((e) => <Card entry={e} kind="content" />)}</div><script is:inline>
+const g=document.getElementById("grid"),sel=document.getElementById("sort");
+sel.addEventListener("change",()=>{const d=sel.value==="asc"?1:-1;[...g.children].sort((a,b)=>d*a.dataset.date.localeCompare(b.dataset.date)).forEach(c=>g.appendChild(c));});
+</script></Base>
