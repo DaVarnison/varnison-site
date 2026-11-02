@@ -1,19 +1,15 @@
 ---
-title: My First Mod
+title: SentryOS
 date: 2026-10-17
-type: mod
+type: app
 cover: ''
-downloadable: true
-sample: true
+downloadable: false
+sample: false
 updates:
-  - version: 1.1.0
-    date: 2026-10-17
-    changelog: 'Sample update: added more things.'
-    download: https://github.com/DaVarnison/varnison-site/releases
-  - version: 1.0.0
-    date: 2026-10-10
-    changelog: Sample first release.
-    download: https://github.com/DaVarnison/varnison-site/releases
+  - version: '0'
+    date: 2026-11-01T19:03:00
+    changelog: Prototype.
+    download: https://sentry-os-a1ae384c.base44.app
 ---
 
-This is a sample project so you can see the layout. Turn **downloadable** off in /admin to show only the current version number.
+Prototype
